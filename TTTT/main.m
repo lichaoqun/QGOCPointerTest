@@ -60,14 +60,24 @@ void test2(){
     Person *son = (__bridge Person *)(*(sonPP));
     NSLog(@"\n  %@    \n  %@", p, son);
     
-    /** 使用 ivar_getOffset 修改指针类型的数据 测试中 */
+    /** 使用 ivar_getOffset 修改指针类型的数据 */
     ptrdiff_t nameOffset = ivar_getOffset(class_getInstanceVariable(p.class, "_name"));
     void **namePP = (void **)(vp + nameOffset);
-    NSString *name = (__bridge NSString *)(*(namePP));
-    name = @"WXC";
+    NSLog(@"%p", *namePP);
+    *namePP = @"WXC";
+
     NSLog(@"\n  %@    \n  %@", p, son);
 }
 
+void test3(){    
+    /** 使用 C 语言的方法 修改OC 的 NSString 的值 */
+    NSString *str1 = @"str1__text";
+    void *strP = &str1;
+    void **strP1 = (void **)strP;
+    *strP1 = @"呵呵";
+    NSLog(@"%@", str1);
+
+}
 
 int main(int argc, const char * argv[]) {
     @autoreleasepool {
