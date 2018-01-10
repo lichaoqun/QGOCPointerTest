@@ -12,7 +12,7 @@
 
 - (NSString *)description
 {
-    return [NSString stringWithFormat:@"name : %@, age : %d, height : %d, weight : %d", self.name, self.age, self.height, self.weight];
+    return [NSString stringWithFormat:@"name : %@, age : %d, height : %d, weight : %d, son : %@", self.name, self.age, self.height, self.weight, self.son];
 }
 
 @end
